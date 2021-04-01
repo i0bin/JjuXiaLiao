@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>瞎聊APP-登陆</title>
+		<link rel="stylesheet" type="text/css" href="css/login-style.css"/>
+	</head>
+	<body>
+		
+		<!-- 登陆提交输入区域 -->
+		<img src="img/logo.png" class="logo">
+		<input type="text" name="" id="username" value="" placeholder="QQ号/手机号/邮箱" class="username"/>
+		<input type="password" name="" id="password" value="" placeholder="密码" class="password"/>
+		<button type="button" class="login" id="login">登陆</button>
+		
+		<a href="#" class="nth-password">找回密码</a>
+		<a href="register.html" class="new-user">新用户</a>
+	</body>
+	<!-- 引入juqery -->
+	<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		// 点击登陆
+		document.getElementById("login").onclick = function(){
+			var username = document.getElementById("username").value
+			var password = document.getElementById("password").value
+			var config = {
+				method:"POST", //请求方式
+				url:"/xialiao/user", // 请求接口
+				async:true, // 异步\同步
+				data:{"action":"login","username":username,"password":password},// post请求提交参数对象,
+				dataType:"text", // 参数类型,
+				success:function (data) { // 当请求成功之后，回掉该函数，用于后续业务处理
+					//当请求成功之后,调用这个函数,提示登陆是否成功  在进行后续数据的处理
+					data = JSON.parse(data);
+					if (data.status == "success"){
+						user = JSON.parse(data.total)
+						//	将数据存储到浏览器的session中
+						sessionStorage.setItem("nickname",user.nickname)
+						//	进行页面跳转
+						window.location.href="home.html";
+					} else {
+						alert(data.message)
+					}
+				}
+			}
+			// 异步提交
+			$.ajax(config);
+		}
+		
+	</script>
+</html>

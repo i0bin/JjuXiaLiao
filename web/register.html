@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>瞎聊APP-注册</title>
+		<link rel="stylesheet" type="text/css" href="css/login-style.css"/>
+	</head>
+	<body>
+		
+		<!-- 注册提交输入区域 -->
+		<img src="img/logo.png" class="logo">
+		<input type="text" name="" id="nickname" value="" placeholder="昵称" class="username"/>
+		<input type="text" name="" id="username" value="" placeholder="QQ号/手机号/邮箱" class="username"/>
+		<input type="password" name="" id="password" value="" placeholder="密码" class="password"/>
+		<input type="password" name="" id="passwordT" value="" placeholder="确认密码" class="password"/>
+		<button type="button" class="login" id="register">注册</button>
+		
+	</body>
+	<!-- 引入juqery -->
+	<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		// 点击登陆
+		document.getElementById("register").onclick = function(){
+			var nickname = document.getElementById("nickname").value
+			var username = document.getElementById("username").value
+			var password = document.getElementById("password").value
+			var passwordT = document.getElementById("passwordT").value
+			if (password != passwordT) {
+				return false;
+			}
+			var config = {
+				method:"POST", //请求方式
+				url:"/xialiao/user", // 请求接口
+				async:true, // 异步\同步
+				data:{"action":"register","nickname":nickname,"username":username,"password":password},// post请求提交参数对象,
+				dataType:"text", // 参数类型,
+				success:function (data) { // 当请求成功之后，回掉该函数，用于后续业务处理
+					data = JSON.parse(data);
+					if (data.status == "success"){
+						//	页面跳转
+						window.location.href = "login.html"
+					} else {
+						alert(data.message)
+					}
+					
+				}
+			}
+			// 异步提交
+			$.ajax(config);
+		}
+		
+	</script>
+	
+</html>

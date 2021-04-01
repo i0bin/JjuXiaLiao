@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>瞎聊APP-发表</title>
+		<link rel="stylesheet" type="text/css" href="css/publish-style.css"/>
+	</head>
+	<body>
+		<!-- 表单：配合js使用FormData格式化，ajax异步提交 -->
+		<!-- enctype="multipart/form-data" 多文件提交 -->
+		<form id="form_file" enctype="multipart/form-data">
+			<div class="head">
+				<a href="#" class="cancle" id="cancle">取消</a>
+				<p class="title">瞎聊几句</p>
+				<a class="publish" id="publish">发表</a>
+			</div>
+			<div class="publish-content">
+				<textarea maxlength="50" required="required" placeholder="请输入瞎聊的鲜事..." class="publish-content-txt" id="publish-content-txt" name="publish-content-txt"></textarea>
+			</div>
+			
+			<!-- 图片选择及缩略图显示 -->
+			<a href="javascript:;" id="a-upload" class="a-upload">
+				<input type="file" required="required" name="publish-content-img" id="publish-content-img" />点击这里上传图片
+			</a>
+			<div class="pic-show">
+				<img src="img/photo.png" id="pic-show">
+			</div>
+		</form>
+	</body>
+	
+	<!-- 引入juqery -->
+	<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		// 1.取消回跳首页面
+		$("#cancle").click(function(){
+			window.location.href = "home.html";
+		});
+		
+		// 2.显示缩略图
+		$("#publish-content-img").change(function(){
+			$("#pic-show").attr("src",URL.createObjectURL($(this)[0].files[0]));
+		});
+		
+		// 3.点击发表异步请求
+		$("#publish").click(function(){
+			// 判断输入框不能为null
+			if ($("#publish-content-txt").val()=="") {
+				alert("不能输入为空...")
+				return false;
+			}
+			
+			// FormData对象：序列化一个form表单，用于异步请求提交
+			// inpue.name = 索引 key input.value = 值 value
+			var forms = new FormData($("#form_file")[0]);
+			// sessionStorage.getItem 获取本地session的昵称
+			forms.append("nickname",sessionStorage.getItem("nickname"));
+			forms.append("date",new Date().getFullYear+"-"+(new Date().getMonth+1));
+			forms.append("sign",new Date().getTime()); // getTime获取世界时间毫秒
+			forms.append("action","publish"); // getTime获取世界时间毫秒
+			var config = {
+				method:"POST", //请求方式
+				url:"/xialiao/publish?action=publish", // 请求接口
+				async:true, // 异步\同步
+				data:forms,// post请求提交参数对象,
+				dataType:"text", // 参数类型,
+				cache:false,// 缓存
+				processData:false,// jquery不要处理发送的数据
+				contentType:false, // jquery不要去设置请求头部
+				success:function (data) { // 当请求成功之后，回掉该函数，用于后续业务处理
+					data = JSON.parse(data);
+					if (data.status=="success"){
+						alert(data.message)
+						window.location.href = "home.html";
+					} else{
+						alert(data.message)
+					}
+				}
+			}
+			// 异步提交
+			$.ajax(config);
+		});
+		
+	</script>
+	
+</html>

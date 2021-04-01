@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+*{
+	margin: 0rem;
+	padding: 0rem;
+}
+
+html{
+	/* calc 在css中做算法运算 */
+	/* vw 屏幕大小 分成100 / 3.75 
+	   1px/100px=0.01rem 
+	*/
+	font-size: calc(100vw/3.75);
+}
+
+body{
+	/* 弹性盒子 */
+	display: flex;
+	/* 盒子排列方式:列/行 */
+	flex-direction: column;
+	/* 使内部子标签水平居中 */
+	align-items: center;
+}
+
+.logo{
+	width: 3rem;
+}
+
+input{
+	border-top: transparent;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: 0.02rem solid royalblue;
+	width: 2.5rem;
+	height: 0.4rem;
+	margin-bottom: 0.2rem;
+	font-size: 0.2rem;
+	text-align: center;
+}
+
+.login{
+	border-radius: 0.05rem;
+	width: 2.55rem;
+	height: 0.4rem;
+	margin-top: 0.5rem;
+	color: white;
+	background: royalblue;
+	font-size: 0.2rem;
+}
+
+.nth-password,.new-user{
+	font-size: 0.16rem;
+	color: cornflowerblue;
+	text-decoration: none;
+}
+
+.nth-password{
+	position: absolute;
+	left: 0.2rem;
+	bottom: 0.2rem;
+}
+.new-user{
+	position: absolute;
+	right: 0.2rem;
+	bottom: 0.2rem;
+}

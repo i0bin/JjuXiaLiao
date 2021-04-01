@@ -1,0 +1,177 @@
+@charset "utf-8";
+
+
+*{
+	margin: 0rem;
+	padding: 0rem;
+}
+
+html{
+	/* calc 在css中做算法运算 */
+	/* vw 屏幕大小 分成100 / 3.75 
+	   1px/100px=0.01rem 
+	*/
+	font-size: calc(100vw/3.75);
+}
+
+body{
+	/* 弹性盒子 */
+	display: flex;
+	/* 盒子排列方式:列/行 */
+	flex-direction: column;
+	/* 使内部子标签水平居中 */
+	align-items: center;
+}
+
+.head{
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	height: 1.8rem;
+	background: url(../img/back.jpg) no-repeat center;
+	background-size: 120%;
+	position: relative;
+}
+
+.head .user-icon{
+	width: 0.7rem;
+	height: 0.7rem;
+	margin-top: 0.5rem;
+	margin-left: 0.2rem;
+	border: 0.03rem solid white;
+	border-radius: 50%;
+}
+
+.head .nickname{
+	font-size: 0.18rem;
+	color: white;
+	margin-top: 0.8rem;
+	margin-left: 0.2rem;
+	border-bottom: 0.02rem solid white;
+}
+
+.head .navigation{
+	width: 100%;
+	height: 0.3rem;
+	position: absolute;
+	bottom: 0rem;
+	display: flex;
+	flex-direction: row;
+	line-height: 0.3rem;
+	background: rgba(0,0,0,0.5);
+}
+
+.head .navigation a{
+	flex: 1;
+	text-align: center;
+	text-decoration: none;
+	font-size: 0.17rem;
+	color: white;
+}
+
+.head .logout{
+	width: 0.6rem;
+	font-size: 0.15rem;
+	position: absolute;
+	left: 50%;
+	top: 0.2rem;
+	margin-left: -0.3rem;
+	border-bottom: 0.03rem solid black;
+}
+
+.fart{
+	margin: 3%;
+	width: 96%;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}
+
+.fart-content{
+	position: relative;
+	width: 100%;
+	height: 3.7rem;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	background: whitesmoke;
+	margin-bottom: 0.2rem;
+}
+
+.fart-content-user{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 0.7rem;
+}
+
+.fart-content-user div{
+	height: 100%;
+	margin-left: 0.3rem;
+}
+
+.fart-content-user-icon{
+	width: 0.5rem;
+	height: 0.5trm;
+	border-radius: 50%;
+	margin: 0.1rem 0 0 0.1rem;
+}
+
+.fart-content-user-name{
+	height: 0.45rem;
+	font-size: 0.15rem;
+	font-weight: bolder;
+	line-height: 0.45rem;
+	color: cornflowerblue;
+}
+
+.fart-content-user-date{
+	height: 0.25rem;
+	font-size: 0.1rem;
+	font-weight: bolder;
+	line-height: 0.25rem;
+	color: #777;
+}
+
+.fart-content-pubish{
+	width: 100%;
+	height: 2.8rem;
+}
+
+.fart-content-pubish p{
+	height: 0.8rem;
+	border-top: 0.02rem solid #333;
+	padding: 0.05rem 0.05rem 0.05rem 0.2rem;
+	font-size: 0.2rem;
+	word-wrap: break-word;
+	overflow-y: auto;
+}
+
+.fart-content-pubish img{
+	width: 90%;
+	height: 1.7rem;
+	margin-left: 4%;
+	margin-top: 0.1rem;
+	border: 0.05rem solid white;
+}
+
+#delete{
+	width: 0.25rem;
+	height: 0.25rem;
+	position: absolute;
+	right: 0.1rem;
+	top: 0.1rem;
+	font-size: 0.15rem;
+	background: olivedrab;
+	text-align: center;line-height: 0.25rem;
+	font-weight: bolder;
+}
+
+.publish{
+	width: 0.5rem;
+	position: fixed;
+	right: 0.3rem;
+	bottom: 0.2rem;
+	border: 0.03rem solid cornflowerblue;
+	border-radius: 50%;
+}
